@@ -9,7 +9,7 @@ read COMMIT_MESSAGE
 # Commit the changes with the user's message
 git commit -m "$COMMIT_MESSAGE"
 
-BRANCH_NAME="master"
+BRANCH_NAME="main"
 
 # Push the changes to the remote repository
 git push origin $BRANCH_NAME
