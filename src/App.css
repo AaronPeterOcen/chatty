@@ -115,46 +115,92 @@
     .chats {
       flex: 1;
       background-color: #1b4228;
-    }
 
-    .navigation {
-      display: flex;
-      align-items: center;
-      background-color: #0e2215;
-      height: 45px;
-      padding: 10px;
-      justify-content: space-between;
-      color: #fff;
-      font-weight: bold;
+      .navigation {
+        display: flex;
+        align-items: center;
+        background-color: #0e2215;
+        height: 45px;
+        padding: 10px;
+        justify-content: space-between;
+        color: #fff;
+        font-weight: bold;
 
-      .logo {
-        font-weight: bolder;
+        .logo {
+          font-weight: bolder;
+        }
+
+        .user {
+          display: flex;
+          gap: 10px;
+
+          img {
+            background-color: #fff;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+
+          button {
+            background-color: #25d366;
+            color: #ffffff;
+            font-size: 10px;
+            border-radius: 10px;
+            box-shadow: none;
+            cursor: pointer;
+          }
+        }
       }
 
-      .user {
-        display: flex;
-        gap: 10px;
+      .search {
+        border-bottom: 1px solid grey;
 
+        .search-form {
+          padding: 10px;
+          input {
+            background-color: transparent;
+            border: none;
+            color: floralwhite;
+            outline: none;
+            &::placeholder {
+              color: #fffffffa;
+            }
+          }
+        }
+      }
+
+      .user-chats {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #0f351c;
+        }
         img {
-          background-color: #fff;
-          height: 20px;
-          width: 20px;
+          width: 50px;
+          height: 50px;
           border-radius: 50%;
           object-fit: cover;
         }
 
-        button {
-          background-color: #25d366;
-          color: #ffffff;
-          font-size: 10px;
-          border-radius: 10px;
-          box-shadow: none;
-          cursor: pointer;
+        .user-chat-info {
+          color: lightgrey;
+          span {
+            font-size: 15px;
+            font-weight: bold;
+          }
+          p {
+            font-size: 14px;
+          }
         }
       }
     }
 
-    .userchat {
+    .user-input {
       flex: 2;
       /* gap: 10px; */
     }
