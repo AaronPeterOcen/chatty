@@ -1,0 +1,37 @@
+.form-container {
+  /* background-color: #b1ffca; */
+  background: linear-gradient(115deg, #52cc7a 10%, #cdffdd 90%);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-wrapper {
+  background-color: #fff;
+  padding: 25px 50px;
+  border: 25px 70px;
+  border-radius: 10px 10px;
+  width: 250px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+
+  /* styling the Chatty sign up text */
+  .chatty-logo {
+    font-size: 20px;
+    font-weight: bolder;
+    color: #25352a;
+  }
+
+  .text-reg {
+    color: #25352a;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
