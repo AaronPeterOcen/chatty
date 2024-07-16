@@ -1,6 +1,21 @@
 .form-container {
   /* background-color: #b1ffca; */
-  background: linear-gradient(115deg, #52cc7a 10%, #cdffdd 90%);
+  /* background: linear-gradient(115deg, #52cc7a 10%, #cdffdd 90%); */
+  background-image: linear-gradient(
+    to right,
+    #6ba0d1,
+    #57b0d9,
+    #47bfdb,
+    #47ccd7,
+    #5bd9ce,
+    #62e0c6,
+    #6fe6bd,
+    #81ebb1,
+    #81eda6,
+    #83ef9b,
+    #87f18d,
+    #8ef27f
+  );
   height: 100vh;
   display: flex;
   align-items: center;
