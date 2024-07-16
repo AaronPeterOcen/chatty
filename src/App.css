@@ -31,6 +31,7 @@
   width: 250px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: center;
+  /* backdrop-filter: blur(10px); */
 
   /* styling the Chatty sign up text */
   .chatty-logo {
@@ -53,7 +54,9 @@
     input {
       padding: 10px;
       border: 1px;
-      border-left: 0.5px solid #52cc7a;
+      border-right: 0.5px solid #52cc7a;
+      border-left: 0.5px solid #6ba0d1;
+
       &::placeholder {
         color: grey;
       }
