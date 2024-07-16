@@ -1,7 +1,8 @@
 import { useState } from "react";
-import HomePage from "./screens/HomePage";
+import HomePage from "./components/HomePage";
 import "./App.css";
-import { SignUpPage } from "./screens/SignUpPage";
+import { SignUpPage } from "./components/SignUpPage";
+import { LoginPage } from "./components/LoginPage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -10,7 +11,8 @@ function App() {
     <>
       <div>
         {/* <HomePage /> */}
-        <SignUpPage />
+        <LoginPage />
+        {/* <SignUpPage /> */}
       </div>
     </>
   );

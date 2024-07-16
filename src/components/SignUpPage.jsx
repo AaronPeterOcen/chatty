@@ -1,4 +1,5 @@
 // import React from "react";
+// import File from "../images/file-add.png";
 
 // export const SignUpPage = () => {
 //   return (
@@ -15,13 +16,17 @@
 //               <input type="password" placeholder="password" />
 //               {/* <input type="checkbox" id="remember" /> */}
 //               {/* <p>Remember me</p> */}
-//               <input type="file" />
+//               <input style={{ display: "none" }} type="file" id="file" />
+//               <label htmlFor="file">
+//                 <img src={File} alt="Add file icon" />
+//                 <span>Add file </span>
+//               </label>
 //               <br />
-//               <button className="btn">Sign Up</button>
+//               <button>Sign Up</button>
 //             </form>
 //             <p>
 //               {" "}
-//               Not a member? <a href="#">Signup now</a>
+//               Already a member? <a href="#">Login now</a>
 //             </p>
 //           </div>
 //         </div>
