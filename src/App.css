@@ -24,13 +24,14 @@
 }
 
 .form-wrapper {
-  background-color: #fff;
+  background-color: #fffffffa;
   padding: 25px 50px;
   border: 25px 70px;
   border-radius: 10px 10px;
   width: 250px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: center;
+
   /* backdrop-filter: blur(10px); */
 
   /* styling the Chatty sign up text */
@@ -62,7 +63,15 @@
       }
     }
     button {
-      background-color: #52cc7a;
+      /* background-color: #52cc7a; */
+      background-image: linear-gradient(
+        to right,
+        #32bbeb,
+        #00cfe3,
+        #00dfc1,
+        #61e98d,
+        #bceb54
+      );
       color: #fff;
       padding: 10px;
       border: none;
