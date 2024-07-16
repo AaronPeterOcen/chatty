@@ -1,10 +1,15 @@
 import React from "react";
+import Navigation from "../Home/Navigation";
+import UserChat from "../Home/UserChat";
 
 const HomePage = () => {
   return (
     <div>
-      <div className="home">
-        <div className="container"></div>
+      <div className="homepage">
+        <div className="container">
+          <Navigation />
+          <UserChat />
+        </div>
       </div>
     </div>
   );

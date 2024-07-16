@@ -1,7 +1,7 @@
 .form-container {
   /* background-color: #b1ffca; */
   /* background: linear-gradient(115deg, #52cc7a 10%, #cdffdd 90%); */
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to right,
     #6ba0d1,
     #57b0d9,
@@ -15,7 +15,9 @@
     #83ef9b,
     #87f18d,
     #8ef27f
-  );
+  ); */
+  background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+
   height: 100vh;
   display: flex;
   align-items: center;
@@ -92,4 +94,13 @@
     font-size: 13px;
     margin-top: 10px;
   }
+}
+
+.homepage {
+  background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
