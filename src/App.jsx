@@ -1,4 +1,5 @@
 import { useState } from "react";
+import HomePage from "./screens/HomePage";
 import "./App.css";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
   return (
     <>
       <div>
+        <HomePage />
         <h1>Chatty</h1>
       </div>
     </>
