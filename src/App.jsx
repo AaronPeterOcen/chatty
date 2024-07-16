@@ -1,6 +1,7 @@
 import { useState } from "react";
 import HomePage from "./screens/HomePage";
 import "./App.css";
+import { SignupPage } from "./screens/SignupPage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -9,7 +10,7 @@ function App() {
     <>
       <div>
         <HomePage />
-        <h1>Chatty</h1>
+        <SignupPage />
       </div>
     </>
   );
