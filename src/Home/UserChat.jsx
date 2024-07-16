@@ -1,7 +1,7 @@
 import React from "react";
 
 const UserChat = () => {
-  return <div>UserChat</div>;
+  return <div className="userchat">User Messages</div>;
 };
 
 export default UserChat;
