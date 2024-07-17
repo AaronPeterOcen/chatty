@@ -1,7 +1,26 @@
-import React from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 import File from "../images/file-add.png";
+import React, { useState } from "react";
 
 export const SignUpPage = () => {
+  // setting a state
+  const [err, getErr] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // console.log(e.target[0].value);
+
+    const displayName = e.target[0].value;
+    const email = e.target[1].value;
+    const password = e.target[2].value;
+    const file = e.target[0].value;
+
+    try {
+      const res = createUserWithEmailAndPassword(auth, email, password);
+    } catch (err) {}
+    // const auth = getAuth();
+  };
   return (
     <div>
       <div className="form">
@@ -9,8 +28,9 @@ export const SignUpPage = () => {
           <div className="form-wrapper">
             <span className="chatty-logo">Welcome to Chatty</span>
             <p className="text-reg">Register</p>
+            {/* <form }></form> */}
             {/* <title>Sign-Up</title> */}
-            <form>
+            <form onSubmit={handleSubmit}>
               <input type="text" placeholder="Enter Username" required />
               <input type="email" placeholder="Email Address" />
               <input type="password" placeholder="password" />
