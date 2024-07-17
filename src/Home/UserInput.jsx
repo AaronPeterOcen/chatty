@@ -1,5 +1,7 @@
 import React from "react";
 import call from "../images/call-35.png";
+import Messages from "./Messages";
+import InputArea from "./InputArea";
 
 const UserInput = () => {
   return (
@@ -10,6 +12,8 @@ const UserInput = () => {
           <img src={call} alt="" />
         </div>
       </div>
+      <Messages />
+      <InputArea />
     </div>
   );
 };

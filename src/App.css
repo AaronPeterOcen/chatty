@@ -225,6 +225,47 @@
           padding-right: 10px;
         }
       }
+
+      .messages {
+        background-color: transparent;
+        padding: 10px;
+        height: calc(100% - 150px);
+      }
+
+      .input-area {
+        height: 50px;
+        background-color: rgb(255, 249, 249);
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      input {
+        width: 100%;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        color: #52cc7a;
+        font-size: 15px;
+
+        &::placeholder {
+          color: lightgray;
+        }
+      }
+
+      .send {
+        display: flex;
+        align-content: center;
+        gap: 10px;
+
+        button {
+          border: none;
+          padding: 10px 15px;
+          color: #fff;
+          background-color: #25d366;
+        }
+      }
     }
   }
 }
