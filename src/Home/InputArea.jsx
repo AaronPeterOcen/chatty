@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "../images/img-32.png";
 import AddImg from "../images/attach-32.png";
+// import Send from "../images/send-32.png";
 
 const InputArea = () => {
   return (
