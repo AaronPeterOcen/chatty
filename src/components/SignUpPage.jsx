@@ -1,7 +1,13 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, storage } from "../firebase";
 import File from "../images/file-add.png";
 import React, { useState } from "react";
+import {
+  // getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
 
 export const SignUpPage = () => {
   // setting a state
@@ -18,7 +24,33 @@ export const SignUpPage = () => {
 
     try {
       const res = createUserWithEmailAndPassword(auth, email, password);
-    } catch (err) {}
+
+      // const storage = getStorage();
+      const storageRef = ref(storage, displayName);
+
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      // Register three observers:
+      // 1. 'state_changed' observer, called any time the state changes
+      // 2. Error observer, called on failure
+      // 3. Completion observer, called on successful completion
+      uploadTask.on(
+        "state_changed",
+
+        (error) => {
+          // Handle unsuccessful uploads
+        },
+        () => {
+          // Handle successful uploads on complete
+          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+          });
+        }
+      );
+    } catch (err) {
+      getErr(true);
+    }
     // const auth = getAuth();
   };
   return (
@@ -43,6 +75,7 @@ export const SignUpPage = () => {
               </label>
               <br />
               <button>Sign Up</button>
+              {err && <span>Error signing you up</span>}
             </form>
             <p>
               {" "}
