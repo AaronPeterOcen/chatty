@@ -1,5 +1,5 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, storage } from "../firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth, storage, db } from "../firebase";
 import File from "../images/file-add.png";
 import React, { useState } from "react";
 import {
@@ -8,6 +8,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore";
 
 export const SignUpPage = () => {
   // setting a state
@@ -20,31 +21,39 @@ export const SignUpPage = () => {
     const displayName = e.target[0].value;
     const email = e.target[1].value;
     const password = e.target[2].value;
-    const file = e.target[0].value;
+    const file = e.target[3].files[0];
 
     try {
-      const res = createUserWithEmailAndPassword(auth, email, password);
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      // console.log(res);
 
       // const storage = getStorage();
       const storageRef = ref(storage, displayName);
 
       const uploadTask = uploadBytesResumable(storageRef, file);
 
-      // Register three observers:
-      // 1. 'state_changed' observer, called any time the state changes
-      // 2. Error observer, called on failure
-      // 3. Completion observer, called on successful completion
       uploadTask.on(
-        "state_changed",
-
+        // "state_changed",
         (error) => {
           // Handle unsuccessful uploads
+          getErr(true);
         },
         () => {
           // Handle successful uploads on complete
-          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("File available at", downloadURL);
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            await updateProfile(res.user, {
+              displayName,
+              photoURL: downloadURL,
+            });
+            await setDoc(doc(db, "users", res.user.uid), {
+              uid: res.user.uid,
+              displayName,
+              email,
+              photoURL: downloadURL,
+            });
+
+            // user chats in firestore
+            await setDoc(doc(db, "userChats", res.user.uid), {});
           });
         }
       );
@@ -75,7 +84,7 @@ export const SignUpPage = () => {
               </label>
               <br />
               <button>Sign Up</button>
-              {err && <span>Error signing you up</span>}
+              {err && <span>Email or Username already in use!</span>}
             </form>
             <p>
               {" "}
