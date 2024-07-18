@@ -9,10 +9,12 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 export const SignUpPage = () => {
   // setting a state
   const [err, getErr] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,6 +56,7 @@ export const SignUpPage = () => {
 
             // user chats in firestore
             await setDoc(doc(db, "userChats", res.user.uid), {});
+            navigate("/");
           });
         }
       );
