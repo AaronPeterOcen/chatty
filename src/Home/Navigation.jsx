@@ -10,7 +10,7 @@ const Navigation = () => {
           alt=""
         />
         <span>Pteer</span>
-        <button>logout</button>
+        <button onClick={()}>logout</button>
       </div>
       {/* <span className="logo">Chatty</span> */}
     </div>
