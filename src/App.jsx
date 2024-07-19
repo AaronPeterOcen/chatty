@@ -4,10 +4,14 @@ import "./App.css";
 import { SignUpPage } from "./components/SignUpPage";
 import { LoginPage } from "./components/LoginPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useContext } from "react";
+import { Authentication } from "./context/Authentication";
 
 function App() {
+  const { currentUser } = useContext(Authentication);
   // const [count, setCount] = useState(0);
 
+  console.log(currentUser);
   return (
     <BrowserRouter>
       <Routes>
