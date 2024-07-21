@@ -9,7 +9,7 @@ import {
   getDownloadURL,
 } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const SignUpPage = () => {
   // setting a state
@@ -91,7 +91,7 @@ export const SignUpPage = () => {
             </form>
             <p>
               {" "}
-              Already a member? <a href="#">Login now</a>
+              Already a member? <Link to="/login">Login</Link>
             </p>
           </div>
         </div>
