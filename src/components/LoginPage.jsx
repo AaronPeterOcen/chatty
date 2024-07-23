@@ -46,7 +46,7 @@ export const LoginPage = () => {
 
               <br />
               <button>Login</button>
-              {err && <span>Email already in use or not registered</span>}
+              {err && <span>Wrong password or email!</span>}
             </form>
             <p>
               {" "}
