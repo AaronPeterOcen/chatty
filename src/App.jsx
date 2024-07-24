@@ -3,6 +3,7 @@ import React from "react";
 // import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 // import { useContext } from "react";
 import Navbar from "./components/Navbar";
+import { auth } from "./firebase/firebase";
 
 const style = {
   appContainer: `max-w-[720px] mx-auto text-center `,
