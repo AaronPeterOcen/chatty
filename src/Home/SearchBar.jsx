@@ -81,7 +81,7 @@ const SearchBar = () => {
     } catch (err) {}
 
     setUser(null);
-    setUsername("");
+    // setUsername("");
     // userchats
   };
 
@@ -96,7 +96,7 @@ const SearchBar = () => {
           value={username}
         />
       </div>
-      {err && <span>User not found!</span>}
+      {err && <span>User null!</span>}
       {user && (
         <div className="user-chats" onClick={handleSelect}>
           <img src={user.photoURL} alt="user" />
