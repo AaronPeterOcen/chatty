@@ -11,12 +11,13 @@
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.1",
-    "firebase": "^10.12.4",
+    "firebase": "^10.12.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-firebase-hooks": "^5.1.1",
     "react-google-button": "^0.8.0",
-    "react-router-dom": "^6.25.1",
+    "react-router-dom": "^6.26.0",
+    "react-toastify": "^10.0.5",
     "sass": "^1.77.8",
     "uuid": "^10.0.0"
   },
