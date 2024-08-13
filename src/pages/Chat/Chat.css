@@ -1,6 +1,7 @@
 .chat {
   min-height: 100vh;
   background-image: url(../../images/chat-bg.png);
+
   display: grid;
   place-items: center;
 }
@@ -9,9 +10,10 @@
   width: 90%;
   height: 75vh;
   max-width: 1000px;
-  background-color: aliceblue;
+  background-color: rgb(249, 255, 250);
+
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  padding: 10px;
+  /* padding: 10px; */
   border-radius: 10px;
 }
