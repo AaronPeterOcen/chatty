@@ -4,7 +4,9 @@ import "./Chat.css";
 const Chat = () => {
   return (
     <div className="chat">
-      <div className="chat-container"></div>
+      <div className="chat-container">
+        <rightSideBar />
+      </div>
     </div>
   );
 };
