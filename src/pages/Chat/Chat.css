@@ -12,4 +12,6 @@
   background-color: aliceblue;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
+  padding: 10px;
+  border-radius: 10px;
 }
