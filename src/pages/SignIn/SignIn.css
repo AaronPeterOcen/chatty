@@ -1,7 +1,7 @@
 .signIn {
   min-height: 100vh;
-  background: url(/chat-bg.png) no-repeat;
-  background-size: cover;
+  background: url(/chat-bg.png);
+  /* background-size: cover; */
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -66,6 +66,7 @@
 .signIn-toggle span {
   font-size: 12px;
   color: rgb(37, 192, 37);
+  cursor: pointer;
 }
 
 .signIn-toggle {

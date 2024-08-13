@@ -1,0 +1,6 @@
+.chat {
+  min-height: 100vh;
+  background-image: url(../../images/chat-bg.png);
+  display: grid;
+  place-items: center;
+}
