@@ -10,7 +10,10 @@ const LeftSideBar = () => {
     <div className="ls">
       <div className="ls-top">
         <div className="ls-nav">
-          <img src={chatLogo} alt="logo" />
+          <div className="logo-detail">
+            <img src={chatLogo} alt="logo" />
+            <span>Chatty</span>
+          </div>
           <div className="menu">
             <img src={menuIcon} alt="menu-icon" />
           </div>

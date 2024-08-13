@@ -28,6 +28,19 @@
   cursor: pointer;
 }
 
+.logo-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-detail span {
+  font-weight: bolder;
+  color: #e7f8dd;
+  font-size: large;
+}
+
 .ls-search {
   background-color: rgba(111, 195, 111, 0.692);
   display: flex;
