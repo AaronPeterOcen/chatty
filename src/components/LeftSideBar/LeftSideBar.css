@@ -6,7 +6,10 @@
     rgba(rgba(127, 182, 133, 1) 0.5),
     rgba(0, 0, 0, 0)
   );
-  border-radius: 12px;
+  border-top-left-radius: 15px; /* Top-left corner */
+  border-bottom-left-radius: 15px; /* Bottom-left corner */
+  border-top-right-radius: 0; /* Ensure right corners have no radius */
+  border-bottom-right-radius: 0;
   color: white;
   height: 75vh;
 }
