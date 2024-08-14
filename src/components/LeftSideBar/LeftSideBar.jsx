@@ -22,15 +22,19 @@ const LeftSideBar = () => {
           <img src={searchIcon} alt="" />
           <input type="text" placeholder="Find a User..." />
         </div>
-        <div className="ls-list">
-          <div className="friends">
-            <img src={userImage} alt="" />
-            <div>
-              <p>Username</p>
-              <span>Hello there!</span>
+      </div>
+      <div className="ls-list">
+        {Array(10)
+          .fill("")
+          .map((item, index) => (
+            <div key={index} className="friends">
+              <img src={userImage} alt="" />
+              <div>
+                <p>Username</p>
+                <span>Hello there!</span>
+              </div>
             </div>
-          </div>
-        </div>
+          ))}
       </div>
     </div>
   );

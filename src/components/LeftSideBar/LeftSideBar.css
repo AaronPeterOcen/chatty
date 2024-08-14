@@ -33,6 +33,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 
 .logo-detail span {
@@ -73,6 +74,7 @@
   flex-direction: column;
   height: 70%;
   overflow-y: scroll;
+  padding: 5px;
 }
 
 .friends {
@@ -100,6 +102,11 @@
 .friends span {
   color: #e7f8dd;
   font-size: 11px;
+}
+.friends p {
+  color: #e7f8dd;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .friends:hover span {
