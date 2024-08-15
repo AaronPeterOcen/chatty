@@ -3,7 +3,7 @@ import "./LeftSideBar.css";
 import chatLogo from "../../images/chat-sm.png";
 import menuIcon from "../../images/ellipsis.png";
 import searchIcon from "../../images/search.png";
-import userImage from "../../images/ani.jpg";
+import userImage from "../../images/bird.jpg";
 
 const LeftSideBar = () => {
   return (

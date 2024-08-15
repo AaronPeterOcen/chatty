@@ -1,6 +1,6 @@
 import React from "react";
 import "./ChatBox.css";
-import userImage from "../../images/ani.jpg";
+import userImage from "../../images/bird.jpg";
 import helpIcon from "../../images/management.png";
 import activeIcon from "../../images/check-mark.png";
 import galleryIcon from "../../images/gallery.png";

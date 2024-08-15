@@ -1,0 +1,88 @@
+.rs {
+  background-color: #003e29;
+  backdrop-filter: blur(5px);
+  background-image: radial-gradient(
+    farthest-corner at 50% 50%,
+    rgba(rgba(127, 182, 133, 1) 0.5),
+    rgba(0, 0, 0, 0)
+  );
+  border-top-right-radius: 15px; /* Top-left corner */
+  border-bottom-right-radius: 15px; /* Bottom-left corner */
+  border-top-left-radius: 0; /* Ensure right corners have no radius */
+  border-bottom-left-radius: 0;
+  color: white;
+  height: 75vh;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.rs-profile {
+  padding-top: 60px;
+  text-align: center;
+  max-width: 70%;
+  margin: auto;
+}
+
+.rs-profile img {
+  width: 110px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.rs-profile h3 {
+  font-size: 18px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin: 5px 0px;
+}
+
+.rs-profile p {
+  font-size: 10px;
+  opacity: 80%;
+  font-weight: 300;
+}
+
+.rs hr {
+  margin: 15px 0px;
+  border-color: aquamarine;
+}
+
+.rs-media {
+  padding: 0px 20px;
+  font-size: 13px;
+}
+
+.rs-media div {
+  max-height: 180px;
+  overflow-y: scroll;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 8px;
+  gap: 5px;
+}
+
+.rs-media img {
+  width: 60px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.rs button {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* background: greenyellow; */
+  background-color: rgba(111, 195, 111, 0.692);
+
+  color: wheat;
+  border: none;
+  font-size: 12px;
+  font-weight: 300;
+  padding: 10px 40px;
+  border-radius: 10px;
+  cursor: pointer;
+}
