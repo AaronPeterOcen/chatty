@@ -119,3 +119,37 @@
 .friends:hover {
   background-color: rgba(111, 195, 111, 0.692);
 }
+
+.ls-nav .menu {
+  position: relative;
+  padding: 10px 0px;
+  font-weight: 500;
+}
+
+.menu .sub-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 130px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #e7f8dd;
+  color: #000;
+  display: none;
+}
+
+.sub-menu hr {
+  border: none;
+  height: 1px;
+  background: #003e29;
+  margin: 8px 0px;
+}
+
+.sub-menu p {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.menu:hover .sub-menu {
+  display: block;
+}
