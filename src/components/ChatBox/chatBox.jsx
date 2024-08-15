@@ -1,10 +1,11 @@
 import React from "react";
 import "./ChatBox.css";
-import userImage from "../../images/prsh.jpg";
+import userImage from "../../images/ani.jpg";
 import helpIcon from "../../images/management.png";
 import activeIcon from "../../images/check-mark.png";
 import galleryIcon from "../../images/gallery.png";
 import sendIcon from "../../images/send.png";
+import sendImg from "../../images/videoframe_366.png";
 
 const ChatBox = () => {
   return (
@@ -20,6 +21,14 @@ const ChatBox = () => {
       <div className="chat-msg">
         <div className="s-mg">
           <p className="msg">Lorem ipsum dolor sit amet.</p>
+          <div>
+            <img src={userImage} alt="" />
+            <p>09:45</p>
+          </div>
+        </div>
+        <div className="s-mg">
+          {/* <p className="msg">Lorem ipsum dolor sit amet.</p> */}
+          <img className="msg-img" src={sendImg} alt="" />
           <div>
             <img src={userImage} alt="" />
             <p>09:45</p>
