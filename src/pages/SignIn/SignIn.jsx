@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import "./SignIn.css";
 import chatLogo from "../../images/chat-sm.png";
+import { signup } from "../../config/firebase";
+// signup
 
 const SignIn = () => {
   // will be used to change the form state
   const [currState, setCurrState] = useState("Sign Up");
+  const [username, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <div className="signIn">
@@ -15,6 +20,8 @@ const SignIn = () => {
         {/* using currState to determine what will be displayed on the screen */}
         {currState === "Sign Up" ? (
           <input
+            onChange={(e) => setUserName(e.target.value)} // email state is updated in real-time as the user types, making it easy to manage form data.
+            value={username}
             type="text"
             placeholder="Username"
             className="form-input"
@@ -22,12 +29,16 @@ const SignIn = () => {
           />
         ) : null}
         <input
+          onChange={(e) => setEmail(e.target.value)} // email state is updated in real-time as the user types, making it easy to manage form data.
+          value={email}
           type="email"
           placeholder="email"
           className="form-input"
           required
         />
         <input
+          onChange={(e) => setPassword(e.target.value)} // password state is updated in real-time as the user types, making it easy to manage form data.
+          value={password}
           type="password"
           placeholder="password"
           className="form-input"
