@@ -22,7 +22,7 @@
   max-width: 160px;
   aspect-ratio: 1/1;
   margin: 20px auto;
-  /* border-radius: 40%; */
+  border-radius: 50%;
 }
 
 .profile form {
@@ -59,4 +59,10 @@ textarea {
   padding: 8px;
   font-size: 15px;
   cursor: pointer;
+}
+
+.profile label img {
+  width: 50px;
+  aspect-ratio: 2/2;
+  border-radius: 50%;
 }
