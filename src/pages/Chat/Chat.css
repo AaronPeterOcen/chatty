@@ -16,4 +16,10 @@
   grid-template-columns: 1fr 2fr 1fr;
   /* padding: 10px; */
   border-radius: 10px;
+  margin-bottom: 5px;
+  box-shadow: 0 50px 50px rgba(0, 0, 0, 0.1);
+}
+
+.chat .cc {
+  margin-top: none;
 }

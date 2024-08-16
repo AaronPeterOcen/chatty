@@ -12,6 +12,9 @@ const Chat = () => {
         <ChatBox />
         <RightSideBar />
       </div>
+      {/* <div className="cc">
+        <p>Lorem</p>
+      </div> */}
     </div>
   );
 };
