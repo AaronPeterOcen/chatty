@@ -11,11 +11,15 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="signIn">
       <img src={chatLogo} className="logo" />
       {/* adding the form field for user input */}
-      <form className="signIn-form">
+      <form onSubmit={onSubmitHandler} className="signIn-form">
         <h2>{currState}</h2>
         {/* using currState to determine what will be displayed on the screen */}
         {currState === "Sign Up" ? (
