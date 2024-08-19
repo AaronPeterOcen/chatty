@@ -8,6 +8,8 @@ import pic2 from "../../images/porsche.jpg";
 import pic3 from "../../images/redbull-racing-1.jpg";
 
 import pic4 from "../../images/renault-clio.jpg";
+import { signout } from "../../config/firebase";
+import { signOut } from "firebase/auth";
 // import pic5 from "../../images/";
 
 const RightSideBar = () => {
@@ -32,7 +34,13 @@ const RightSideBar = () => {
           <img src={pic1} alt="" />
         </div>
       </div>
-      <button>Logout</button>
+      <button
+        onClick={() => {
+          signout();
+        }}
+      >
+        Logout
+      </button>
     </div>
   );
 };

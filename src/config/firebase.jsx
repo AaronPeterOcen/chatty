@@ -80,4 +80,4 @@ const signout = async () => {
   }
 };
 
-export { signup, login, signout, auth, db };
+export { signup, login, signout };
