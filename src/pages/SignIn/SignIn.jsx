@@ -11,8 +11,11 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    if (currState === "Sign Up") {
+      signup(username, email, password);
+    }
   };
 
   return (

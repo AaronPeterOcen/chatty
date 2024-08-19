@@ -6,30 +6,30 @@ import { getFirestore, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAzl_73-JNClZL3dS8b42hyqvGntiQH4uQ",
-  authDomain: "chatty-01-404a8.firebaseapp.com",
-  projectId: "chatty-01-404a8",
-  storageBucket: "chatty-01-404a8.appspot.com",
-  messagingSenderId: "726118495243",
-  appId: "1:726118495243:web:4097311c29063e8fbc430e",
+  apiKey: "AIzaSyCVShpk6oZj-t1bLIzC8V2SOuioi4HsyIw",
+  authDomain: "chat-e3ca9.firebaseapp.com",
+  projectId: "chat-e3ca9",
+  storageBucket: "chat-e3ca9.appspot.com",
+  messagingSenderId: "1020628028062",
+  appId: "1:1020628028062:web:09793ade3c5f66f336c98f",
 };
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-export const auth = getAuth();
-export const db = getFirestore();
+export const auth = getAuth(app);
+export const db = getFirestore(app);
 export const storage = getStorage();
 
 const signup = async (username, email, password) => {
   try {
     // Create a new user with the provided email and password
-    const res = await createUserWithEmailAndPassword(email, password);
+    const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user; // Get the newly created user
 
     // Store the user's additional information in the "users" collection
     await setDoc(doc(db, "users", user.uid), {
       id: user.uid,
-      username: username.toLowerCase(),
+      username: username,
       email,
       name: "", // Placeholder for user's real name
       avatar: "", // Placeholder for user's avatar
@@ -42,7 +42,7 @@ const signup = async (username, email, password) => {
       chatData: [], // Placeholder for future chat data
     });
   } catch (error) {
-    console.error(error); // Log any errors that occur during the signup process
+    // console.error(error); // Log any errors that occur during the signup process
     toast.error(error.code); // Display an error message to the user
   }
 };
