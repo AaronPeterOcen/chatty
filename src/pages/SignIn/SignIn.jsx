@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SignIn.css";
 import chatLogo from "../../images/chat-sm.png";
-import { signup } from "../../config/firebase";
+import { login, signup } from "../../config/firebase";
 // signup
 
 const SignIn = () => {
@@ -11,10 +11,18 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // Event handler for form submission
   const onSubmitHandler = (e) => {
+    // Prevent the default form submission behavior to avoid page reload
     e.preventDefault();
+
+    // Check if the current state is "Sign Up"
     if (currState === "Sign Up") {
+      // If yes, call the signup function with the provided username, email, and password
       signup(username, email, password);
+    } else {
+      // Otherwise, call the login function with the provided email and password
+      login(email, password);
     }
   };
 
