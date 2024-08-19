@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
+// import { getStorage } from "firebase/storage";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { getFirestore, setDoc } from "firebase/firestore";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 
 const firebaseConfig = {
@@ -18,7 +18,7 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-export const storage = getStorage();
+// export const storage = getStorage(app);
 
 const signup = async (username, email, password) => {
   try {
@@ -41,8 +41,11 @@ const signup = async (username, email, password) => {
     await setDoc(doc(db, "chats", user.uid), {
       chatData: [], // Placeholder for future chat data
     });
+
+    console.log("Documents successfully written!");
+    // console.log(firebase.auth().user);
   } catch (error) {
-    // console.error(error); // Log any errors that occur during the signup process
+    console.error(error); // Log any errors that occur during the signup process
     toast.error(error.code); // Display an error message to the user
   }
 };
