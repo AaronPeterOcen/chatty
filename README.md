@@ -9,4 +9,6 @@ git clone https://github.com/AaronPeterOcen/chatty.git
 Then:
 cd chatty
 
+```bash
 npm install && npm run dev
+```
