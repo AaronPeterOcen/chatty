@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./SignIn.css";
 import chatLogo from "../../images/chat-sm.png";
 import { login, signup } from "../../config/firebase";
-// signup
 
 const SignIn = () => {
   // will be used to change the form state
