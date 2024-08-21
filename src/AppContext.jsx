@@ -1,6 +1,7 @@
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { createContext, useState } from "react";
-import { db } from "./config/firebase";
+import { auth, db } from "./config/firebase";
+import { useNavigate } from "react-router-dom";
 
 // Creates a Context object named AppContext.
 // This will be used to share data across the component tree without passing props down manually at every level.
@@ -9,6 +10,8 @@ export const AppContext = createContext();
 // The AppContextProvider component is defined here.
 // This component will wrap around any components that need access to the context.
 const AppContextProvider = (props) => {
+  const navigate = useNavigate();
+
   const [userData, setUserData] = useState(null);
   const [chatData, setChatData] = useState(null);
 
@@ -23,10 +26,30 @@ const AppContextProvider = (props) => {
 
       // Extract and log the user data
       const userData = userSnap.data();
-      console.log(userData);
+      setUserData(userData); //storing the user data in the state var
 
-      // Optionally set the user data to state
-      // setUserData(userData);
+      if (userData.avatar && userData.name) {
+        // If the user has an avatar and a name, navigate to the chat page
+        navigate("/chat");
+      } else {
+        // If the user doesn't have an avatar or name, navigate to the profile page
+        navigate("/profile");
+      }
+
+      // Update the user's last seen time in the database
+      await updateDoc(userRef, {
+        lastSeen: Date.now(),
+      });
+
+      // Set an interval to update the user's last seen time every 20 minutes (1200000 ms)
+      setInterval(async () => {
+        if (auth.chatUser) {
+          // If the user is still authenticated, update the last seen time
+          await updateDoc(userRef, {
+            lastSeen: Date.now(),
+          });
+        }
+      }, 120000); // 2 minutes in milliseconds
     } catch (error) {
       // Handle any errors
     }
