@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import SignIn from "./pages/SignIn/SignIn";
 import Chat from "./pages/Chat/Chat";
@@ -7,10 +7,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/firebase";
+import { AppContext } from "./AppContext";
+// loadUserInfo
 
 function App() {
   // Import the necessary functions from React and your routing/authentication libraries
   const navigate = useNavigate(); // Hook from react-router-dom to programmatically navigate between routes
+  const { loadUserInfo } = useContext(AppContext); // Destructure `loadUserInfo` from the AppContext using the useContext hook
 
   // useEffect hook to run side effects in functional components
   useEffect(() => {
@@ -19,6 +22,8 @@ function App() {
       if (user) {
         // If a user is authenticated, navigate to the "/chat" route
         navigate("/chat");
+        // console.log(user);
+        await loadUserInfo(user.uid);
       } else {
         // If no user is authenticated, navigate to the home ("/") route
         navigate("/");
