@@ -6,7 +6,7 @@ import {
 } from "firebase/storage"; // Import Firebase Storage functions
 
 // Async function to handle file upload to Firebase Storage
-export default upload = async (file) => {
+const upload = async (file) => {
   // Initialize Firebase Storage
   const storage = getStorage();
 
@@ -49,3 +49,5 @@ export default upload = async (file) => {
     }
   );
 };
+
+export default upload;

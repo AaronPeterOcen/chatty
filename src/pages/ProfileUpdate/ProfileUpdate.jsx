@@ -4,17 +4,50 @@ import avatarUser from "../../images/user.png";
 import chatLogo from "../../images/chat-sm.png";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../config/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import upload from "../../lib/upload";
 
 const ProfileUpdate = () => {
   const navigate = useNavigate();
-  const [image, setImage] = useState(false); // using state for determining the image state for the user
+  const [image, setImage] = useState(""); // using state for determining the image state for the user
 
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
   const [uid, setUid] = useState("");
   const [prevImage, setPrevImage] = useState("");
+
+  const profileUpdate = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Checks if both previous and current images are absent.
+      // If so, displays an error message asking the user to upload an image.
+      if (!prevImage && !image) {
+        toast.error("Please upload an image");
+        return; // Exit the function early since no image is provided.
+      }
+
+      // Reference to the user's document in the Firestore database.
+      const docRef = doc(db, "users", uid);
+
+      if (image) {
+        // If there is a new image to upload
+        const imgUrl = await upload(image); // Uploads the new image and gets the URL.
+        setPrevImage(imgUrl); // Updates the state with the newly uploaded image URL.
+
+        // Updates the user's document with the new avatar URL, bio, and name.
+        await updateDoc(docRef, { avatar: imgUrl, bio: bio, name: name });
+      } else {
+        // Updates the user's document with only bio and name if no new image is uploaded.
+        await updateDoc(docRef, { bio: bio, name: name });
+      }
+    } catch (error) {
+      console.error("Error updating profile: ", error);
+      toast.error("Failed to update profile. Please try again.");
+    }
+  };
 
   useEffect(() => {
     // Listen for changes in the authentication state
@@ -53,7 +86,7 @@ const ProfileUpdate = () => {
   return (
     <div className="profile">
       <div className="profile-container">
-        <form>
+        <form onSubmit={profileUpdate}>
           <h3>Profile Details</h3>
           <label htmlFor="avatar">
             <input
