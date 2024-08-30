@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./ProfileUpdate.css";
 import avatarUser from "../../images/user.png";
 import chatLogo from "../../images/chat-sm.png";
@@ -8,6 +8,8 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import upload from "../../lib/upload";
+import { AppContext } from "../../AppContext";
+import AppContextProvider from "../../AppContext";
 
 const ProfileUpdate = () => {
   const navigate = useNavigate();
@@ -17,6 +19,7 @@ const ProfileUpdate = () => {
   const [bio, setBio] = useState("");
   const [uid, setUid] = useState("");
   const [prevImage, setPrevImage] = useState("");
+  const { setUserData } = useContext(AppContext);
 
   const profileUpdate = async (e) => {
     e.preventDefault();
@@ -43,6 +46,9 @@ const ProfileUpdate = () => {
         // Updates the user's document with only bio and name if no new image is uploaded.
         await updateDoc(docRef, { bio: bio, name: name });
       }
+      const snap = await getDoc(docRef);
+      setUserData(snap.data());
+      navigate("/chat");
     } catch (error) {
       console.error("Error updating profile: ", error);
       toast.error("Failed to update profile. Please try again.");

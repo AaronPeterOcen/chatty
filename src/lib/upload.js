@@ -17,37 +17,41 @@ const upload = async (file) => {
   // Start the file upload process using the Resumable Upload feature
   const uploadTask = uploadBytesResumable(storageRef, file);
 
-  // Monitor the upload process
-  uploadTask.on(
-    "state_changed",
-    (snapshot) => {
-      // Calculate and log the upload progress
-      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      console.log("Upload is " + progress + "% done");
+  return new Promise((resolve, reject) => {
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        // Calculate and log the upload progress
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log("Upload is " + progress + "% done");
 
-      // Log different states of the upload process
-      switch (snapshot.state) {
-        case "paused":
-          console.log("Upload is paused");
-          break;
-        case "running":
-          console.log("Upload is running");
-          break;
+        // Log different states of the upload process
+        switch (snapshot.state) {
+          case "paused":
+            console.log("Upload is paused");
+            break;
+          case "running":
+            console.log("Upload is running");
+            break;
+        }
+      },
+      (error) => {
+        // Handle any errors during the upload process
+        console.error("Upload failed:", error);
+      },
+      () => {
+        // When the upload is complete, get the download URL of the uploaded file
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          // Resolve the promise with the download URL
+          resolve(downloadURL);
+          console.log("File available at", downloadURL);
+        });
       }
-    },
-    (error) => {
-      // Handle any errors during the upload process
-      console.error("Upload failed:", error);
-    },
-    () => {
-      // When the upload is complete, get the download URL of the uploaded file
-      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-        // Resolve the promise with the download URL
-        resolve(downloadURL);
-        console.log("File available at", downloadURL);
-      });
-    }
-  );
+    );
+  });
+
+  // Monitor the upload process
 };
 
 export default upload;
