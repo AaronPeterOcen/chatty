@@ -75,9 +75,10 @@
 .ls-list {
   display: flex;
   flex-direction: column;
-  height: 70%;
+  height: 65%;
   overflow-y: scroll;
   padding: 5px;
+  border-radius: 20px;
 }
 
 .friends {
