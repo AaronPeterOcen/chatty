@@ -5,7 +5,17 @@ import menuIcon from "../../images/ellipsis.png";
 import searchIcon from "../../images/search.png";
 import userImage from "../../images/bird.jpg";
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  arrayUnion,
+  collection,
+  doc,
+  getDocs,
+  query,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { db } from "../../config/firebase";
 import { AppContext } from "../../AppContext";
 
@@ -41,6 +51,41 @@ const LeftSideBar = () => {
     }
   };
 
+  const addChat = async (e) => {
+    const msgRef = collection(db, "messages");
+    const chatsRef = collection(db, "chats");
+
+    try {
+      const newMsgRef = doc(msgRef);
+
+      await setDoc(newMsgRef, {
+        createAt: serverTimestamp(),
+        messages: [],
+      });
+      await updateDoc(doc(chatsRef, user.id), {
+        chatData: arrayUnion({
+          messageId: newMsgRef.id,
+          lastMsg: "",
+          rId: userData.id,
+          updatedAt: Date.now(),
+          msgSeen: true,
+        }),
+      });
+      await updateDoc(doc(chatsRef, userData.id), {
+        chatData: arrayUnion({
+          messageId: newMsgRef.id,
+          lastMsg: "",
+          rId: user.id,
+          updatedAt: Date.now(),
+          msgSeen: true,
+        }),
+      });
+    } catch (error) {
+      toast.error(error.message);
+      console.error(error);
+    }
+  };
+
   return (
     <div className="ls">
       <div className="ls-top">
@@ -69,7 +114,7 @@ const LeftSideBar = () => {
       </div>
       <div className="ls-list">
         {showSearch && user ? (
-          <div className="friends add-user">
+          <div onClick={addChat} className="friends add-user">
             <img src={user.avatar} alt="" />
             <p>{user.name}</p>
           </div>
