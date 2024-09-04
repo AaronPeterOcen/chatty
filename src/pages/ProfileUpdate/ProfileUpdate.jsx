@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import upload from "../../lib/upload";
 import { AppContext } from "../../AppContext";
-import AppContextProvider from "../../AppContext";
+// import AppContextProvider from "../../AppContext";
 
 const ProfileUpdate = () => {
   const navigate = useNavigate();
@@ -119,7 +119,7 @@ const ProfileUpdate = () => {
             onChange={(e) => setBio(e.target.bio)}
             value={bio}
             placeholder="Bio"
-            id=""
+            id="bio"
             required
           ></textarea>
           <button type="submit">Save</button>

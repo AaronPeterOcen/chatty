@@ -64,8 +64,8 @@ const SignIn = () => {
         </button>
         {currState === "Sign Up" ? (
           <div className="signIn-term">
-            <input type="checkbox" />
-            <p>Agree to all terms and conditions.</p>
+            {/* <input type="checkbox" />
+            <p>Agree to all terms and conditions.</p> */}
           </div>
         ) : null}
         <div className="signIn-forgot">

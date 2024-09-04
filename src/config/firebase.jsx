@@ -44,7 +44,7 @@ const signup = async (username, email, password) => {
 
     // Initialize an empty chat document for the user in the "chats" collection
     await setDoc(doc(db, "chats", user.uid), {
-      chatData: [], // Placeholder for future chat data
+      chatsData: [], // Placeholder for future chat data
     });
 
     console.log("Documents successfully written!");

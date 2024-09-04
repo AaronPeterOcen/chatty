@@ -1,7 +1,8 @@
 import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "./config/firebase";
 import { useNavigate } from "react-router-dom";
+import firebase from "firebase/compat/app";
 
 // Creates a Context object named AppContext.
 // This will be used to share data across the component tree without passing props down manually at every level.
@@ -14,6 +15,7 @@ const AppContextProvider = (props) => {
 
   const [userData, setUserData] = useState(null);
   const [chatData, setChatData] = useState(null);
+  // const { chatsData } = useContext(firebase);
 
   // Function to load user info based on user ID (uid)
   const loadUserInfo = async (uid) => {
@@ -64,8 +66,8 @@ const AppContextProvider = (props) => {
       // Set up a real-time listener to the chat document to get updates whenever it changes
       const unSub = onSnapshot(chatRef, async (res) => {
         // Extract chat items data from the Firestore document's 'chatData' field
-        const chatItems = res.data().chatData;
-
+        const chatItems = res.data().chatsData;
+        // console.log(chatItems);
         // Temporary array to hold processed chat data with user information
         const tempData = [];
 
@@ -85,7 +87,7 @@ const AppContextProvider = (props) => {
         }
 
         // Update the component state with sorted chat data based on the 'updateAt' timestamp in descending order
-        setChatData(tempData.sort((a, b) => b.updateAt - a.updateAt));
+        setChatData(tempData.sort((a, b) => b.updatedAt - a.updatedAt));
       });
 
       // Cleanup function to unsubscribe from the Firestore listener when the component unmounts or userData changes
@@ -101,7 +103,7 @@ const AppContextProvider = (props) => {
     userData,
     setUserData,
     chatData,
-
+    setChatData,
     loadUserInfo,
   };
 
