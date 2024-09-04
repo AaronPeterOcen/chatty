@@ -22,7 +22,8 @@ import { AppContext } from "../../AppContext";
 const LeftSideBar = () => {
   const navigate = useNavigate();
   const { userData, chatData } = useContext(AppContext); // Extracting user data from AppContext using React's useContext hook.
-  const [user, setUser] = useState(null); // State to manage the user object found through search.
+  const [user, setUser, messagesId, setMessagesId, chatUser, setChatUser] =
+    useState(null); // State to manage the user object found through search.
   const [showSearch, setShowSearch] = useState(false); // State to manage visibility of the search results or suggestions.
 
   const inputField = async (e) => {
@@ -61,38 +62,52 @@ const LeftSideBar = () => {
   };
 
   const addChat = async (e) => {
+    // Reference to the "messages" collection in Firestore
     const msgRef = collection(db, "messages");
+    // Reference to the "chats" collection in Firestore
     const chatsRef = collection(db, "chats");
 
     try {
+      // Create a new document reference in the "messages" collection
       const newMsgRef = doc(msgRef);
 
+      // Set the initial data for the new message document
       await setDoc(newMsgRef, {
-        createAt: serverTimestamp(),
-        messages: [],
+        createAt: serverTimestamp(), // Timestamp of message creation
+        messages: [], // Empty array to hold the messages
       });
+
+      // Update the current user's chat document with the new chat data
       await updateDoc(doc(chatsRef, user.id), {
         chatsData: arrayUnion({
-          messageId: newMsgRef.id,
-          lastMsg: "",
-          rId: userData.id,
-          updatedAt: Date.now(),
-          msgSeen: true,
+          messageId: newMsgRef.id, // ID of the new message document
+          lastMsg: "", // Placeholder for the last message (initially empty)
+          rId: userData.id, // Receiver ID (the ID of the other user)
+          updatedAt: Date.now(), // Timestamp of the last update
+          msgSeen: true, // Indicates if the message has been seen
         }),
       });
+
+      // Update the other user's chat document with the new chat data
       await updateDoc(doc(chatsRef, userData.id), {
         chatsData: arrayUnion({
-          messageId: newMsgRef.id,
-          lastMsg: "",
-          rId: user.id,
-          updatedAt: Date.now(),
-          msgSeen: true,
+          messageId: newMsgRef.id, // ID of the new message document
+          lastMsg: "", // Placeholder for the last message (initially empty)
+          rId: user.id, // Receiver ID (the current user's ID)
+          updatedAt: Date.now(), // Timestamp of the last update
+          msgSeen: true, // Indicates if the message has been seen
         }),
       });
     } catch (error) {
+      // Display an error message using toast and log the error to the console
       toast.error(error.message);
       console.error(error);
     }
+  };
+
+  const setChat = async (item) => {
+    setMessagesId(item.messageId);
+    setChatUser(item);
   };
 
   return (
@@ -129,7 +144,7 @@ const LeftSideBar = () => {
           </div>
         ) : (
           chatData.map((item, index) => (
-            <div key={index} className="friends">
+            <div onClick={() => setChat(item)} key={index} className="friends">
               <img src={item.userData.avatar} alt="" />
               <div>
                 <p>{item.userData.name}</p>

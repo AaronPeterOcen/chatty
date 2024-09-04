@@ -14,7 +14,10 @@ const AppContextProvider = (props) => {
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState(null);
-  const [chatData, setChatData] = useState([]);
+  const [chatData, setChatData] = useState(null);
+  const [messagesId, setMessagesId] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [chatUser, setChatUser] = useState(null);
   // const { chatsData } = useContext(firebase);
 
   // Function to load user info based on user ID (uid)
@@ -129,6 +132,12 @@ const AppContextProvider = (props) => {
     chatData,
     setChatData,
     loadUserInfo,
+    messagesId,
+    setMessagesId,
+    messages,
+    setMessages,
+    chatUser,
+    setChatUser,
   };
 
   return (
