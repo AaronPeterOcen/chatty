@@ -14,7 +14,7 @@ const AppContextProvider = (props) => {
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState(null);
-  const [chatData, setChatData] = useState(null);
+  const [chatData, setChatData] = useState([]);
   // const { chatsData } = useContext(firebase);
 
   // Function to load user info based on user ID (uid)
@@ -25,6 +25,7 @@ const AppContextProvider = (props) => {
 
       // Fetch the user document snapshot
       const userSnap = await getDoc(userRef);
+      console.log("userSnap", userSnap);
 
       // Extract and log the user data
       const userData = userSnap.data();
@@ -71,20 +72,43 @@ const AppContextProvider = (props) => {
         // Temporary array to hold processed chat data with user information
         const tempData = [];
 
+        // alternative
+        chatItems.forEach(async (item) => {
+          if (item && item.rId) {
+            try {
+              // Create a reference to the user document in the 'users' collection using item.rId
+              const userRef = doc(db, "users", item.rId);
+
+              // Fetch the user document snapshot
+              const userSnap = await getDoc(userRef);
+
+              // Extract user data from the snapshot
+              const userData = userSnap.data();
+
+              // Add the chat item to tempData array along with the fetched user data
+              tempData.push({ ...item, userData });
+            } catch (error) {
+              console.error("Error fetching user data:", error);
+            }
+          } else {
+            console.error("Item or item.rId is undefined:", item);
+          }
+        });
+
         // Loop through each chat item to fetch additional user information
-        for (const item in chatItems) {
-          // Create a reference to the user document in the 'users' collection using item.rId
-          const userRef = doc(db, "users", item.rId);
+        // for (const item in chatItems) {
+        //   // Create a reference to the user document in the 'users' collection using item.rId
+        //   const userRef = doc(db, "users", item.rId);
 
-          // Fetch the user document snapshot
-          const userSnap = await getDoc(userRef);
+        //   // Fetch the user document snapshot
+        //   const userSnap = await getDoc(userRef);
 
-          // Extract user data from the snapshot
-          const userData = userSnap.data();
+        //   // Extract user data from the snapshot
+        //   const userData = userSnap.data();
 
-          // Add the chat item to tempData array along with the fetched user data
-          tempData.push({ ...item, userData });
-        }
+        //   // Add the chat item to tempData array along with the fetched user data
+        //   tempData.push({ ...item, userData });
+        // }
 
         // Update the component state with sorted chat data based on the 'updateAt' timestamp in descending order
         setChatData(tempData.sort((a, b) => b.updatedAt - a.updatedAt));

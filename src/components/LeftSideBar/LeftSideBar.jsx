@@ -21,7 +21,7 @@ import { AppContext } from "../../AppContext";
 
 const LeftSideBar = () => {
   const navigate = useNavigate();
-  const { userData } = useContext(AppContext); // Extracting user data from AppContext using React's useContext hook.
+  const { userData, chatData } = useContext(AppContext); // Extracting user data from AppContext using React's useContext hook.
   const [user, setUser] = useState(null); // State to manage the user object found through search.
   const [showSearch, setShowSearch] = useState(false); // State to manage visibility of the search results or suggestions.
 
@@ -39,7 +39,16 @@ const LeftSideBar = () => {
 
         if (!querySnap.empty && querySnap.docs[0].data().id !== userData.id) {
           // If there are results and the first user's id is not the same as the current user's id:
-          setUser(querySnap.docs[0].data()); // Set the found user data to the 'user' state.
+          // checking if the user has already been added
+          let userExist = false;
+          chatData.map((user) => {
+            if (user.rId === querySnap.docs[0].data().id) {
+              userExist = true;
+            }
+          });
+          if (!userExist) {
+            setUser(querySnap.docs[0].data()); // Set the found user data to the 'user' state.
+          }
         } else {
           setUser(null); // If no valid user is found, reset the 'user' state to null.
         }
@@ -119,17 +128,15 @@ const LeftSideBar = () => {
             <p>{user.name}</p>
           </div>
         ) : (
-          Array(10)
-            .fill("")
-            .map((item, index) => (
-              <div key={index} className="friends">
-                <img src={userImage} alt="" />
-                <div>
-                  <p>Username</p>
-                  <span>Hello there!</span>
-                </div>
+          chatData.map((item, index) => (
+            <div key={index} className="friends">
+              <img src={item.userData.avatar} alt="" />
+              <div>
+                <p>{item.userData.name}</p>
+                <span>{item.lastMsg}</span>
               </div>
-            ))
+            </div>
+          ))
         )}
       </div>
     </div>
