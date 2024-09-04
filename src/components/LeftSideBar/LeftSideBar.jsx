@@ -63,7 +63,7 @@ const LeftSideBar = () => {
         messages: [],
       });
       await updateDoc(doc(chatsRef, user.id), {
-        chatData: arrayUnion({
+        chatsData: arrayUnion({
           messageId: newMsgRef.id,
           lastMsg: "",
           rId: userData.id,
@@ -72,7 +72,7 @@ const LeftSideBar = () => {
         }),
       });
       await updateDoc(doc(chatsRef, userData.id), {
-        chatData: arrayUnion({
+        chatsData: arrayUnion({
           messageId: newMsgRef.id,
           lastMsg: "",
           rId: user.id,
