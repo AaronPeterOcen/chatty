@@ -154,3 +154,11 @@
 .menu:hover .sub-menu {
   display: block;
 }
+
+.friends.border img {
+  border: 3px solid #e7f8dd;
+}
+
+.friends.border div span {
+  color: #e7f8dd;
+}

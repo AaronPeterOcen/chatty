@@ -144,3 +144,12 @@
   font-weight: 500;
   color: #003e29;
 }
+
+.message-img {
+  max-width: 250px; /* Restricts the maximum width */
+  max-height: 250px; /* Restricts the maximum height */
+  width: 100%; /* Ensures the image scales down on smaller screens */
+  height: auto; /* Maintains aspect ratio */
+  border-radius: 8px; /* Optional: add rounded corners */
+  padding: 2px;
+}

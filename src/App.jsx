@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/firebase";
 import { AppContext } from "./AppContext";
+// import "./App.css";
 // loadUserInfo
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
   }, []); // Empty dependency array means this effect runs once after the initial render
 
   return (
-    <div>
+    <div className="app-container">
       <ToastContainer />
       <Routes>
         {/* using routes to link to the three pages that i will be using */}
