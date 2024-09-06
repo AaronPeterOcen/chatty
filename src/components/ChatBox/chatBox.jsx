@@ -8,14 +8,61 @@ import sendIcon from "../../images/send.png";
 import sendImg from "../../images/videoframe_366.png";
 import { AppContext } from "../../AppContext";
 import chatLogo from "../../images/chat.png";
-import { doc, onSnapshot } from "firebase/firestore";
+import {
+  arrayUnion,
+  doc,
+  getDoc,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../../config/firebase";
+import { toast } from "react-toastify";
 
 const ChatBox = () => {
   const { userData, messagesId, chatUser, messages, setMessages } =
     useContext(AppContext);
 
   const [input, setInput] = useState("");
+
+  const msgSend = async () => {
+    try {
+      if (input && messagesId) {
+        await updateDoc(doc(db, "messages", messagesId), {
+          messages: arrayUnion({
+            sId: userData.id ?? "",
+            text: input,
+            createdAt: new Date(),
+          }),
+        });
+
+        const userIds = [chatUser.rId, userData.id];
+
+        userIds.forEach(async (id) => {
+          const userChatsRef = doc(db, "chats", id);
+          const userChatsSnapShot = await getDoc(userChatsRef);
+
+          if (userChatsSnapShot.exists()) {
+            const userChatData = userChatsSnapShot.data();
+            const chatIndex = userChatData.chatsData.findIndex(
+              (c) => c.messageId === messagesId
+            );
+            userChatData.chatsData[chatIndex].lastMsg = input.slice(0, 30);
+            userChatData.chatsData[chatIndex].updatedAt = Date.now();
+            if (userChatData.chatsData[chatIndex].rId === userData.id) {
+              userChatData.chatsData[chatIndex].msgSeen = false;
+            }
+
+            await updateDoc(userChatsRef, {
+              chatsData: userChatData.chatsData,
+            });
+          }
+        });
+      }
+    } catch (error) {
+      toast.error(error.message);
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     if (messagesId) {
@@ -66,7 +113,12 @@ const ChatBox = () => {
       </div>
 
       <div className="chat-input">
-        <input type="text" placeholder="Send a message" />
+        <input
+          onChange={(e) => setInput(e.target.value)}
+          value={input}
+          type="text"
+          placeholder="Send a message"
+        />
         <input
           type="file"
           id="image"
@@ -76,7 +128,7 @@ const ChatBox = () => {
         <label htmlFor="image">
           <img src={galleryIcon} alt="" />
         </label>
-        <img src={sendIcon} alt="" />
+        <img onClick={msgSend} src={sendIcon} alt="" />
       </div>
     </div>
   ) : (
