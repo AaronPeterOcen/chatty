@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./ChatBox.css";
 import userImage from "../../images/bird.jpg";
 import helpIcon from "../../images/management.png";
@@ -6,14 +6,36 @@ import activeIcon from "../../images/check-mark.png";
 import galleryIcon from "../../images/gallery.png";
 import sendIcon from "../../images/send.png";
 import sendImg from "../../images/videoframe_366.png";
+import { AppContext } from "../../AppContext";
+import chatLogo from "../../images/chat.png";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../../config/firebase";
 
 const ChatBox = () => {
-  return (
+  const { userData, messagesId, chatUser, messages, setMessages } =
+    useContext(AppContext);
+
+  const [input, setInput] = useState("");
+
+  useEffect(() => {
+    if (messagesId) {
+      const unSub = onSnapshot(doc(db, "messages", messagesId), (resp) => {
+        setMessages(resp.data().messages.reverse());
+        console.log(resp.data().messages.reverse());
+      });
+      return () => {
+        unSub();
+      };
+    }
+  }, [messagesId]);
+
+  return chatUser ? (
     <div className="chat-box">
       <div className="chat-user">
-        <img src={userImage} alt="" />
+        <img src={chatUser.userData.avatar} alt="" />
         <p>
-          Username <img className="dot" src={activeIcon} alt="" />
+          {chatUser.userData.name}{" "}
+          <img className="dot" src={activeIcon} alt="" />
         </p>
         <img src={helpIcon} alt="" />
       </div>
@@ -56,6 +78,11 @@ const ChatBox = () => {
         </label>
         <img src={sendIcon} alt="" />
       </div>
+    </div>
+  ) : (
+    <div className="chat-welcome">
+      <img src={chatLogo} alt="" />
+      <p>Select a chat</p>
     </div>
   );
 };

@@ -21,9 +21,15 @@ import { AppContext } from "../../AppContext";
 
 const LeftSideBar = () => {
   const navigate = useNavigate();
-  const { userData, chatData } = useContext(AppContext); // Extracting user data from AppContext using React's useContext hook.
-  const [user, setUser, messagesId, setMessagesId, chatUser, setChatUser] =
-    useState(null); // State to manage the user object found through search.
+  const {
+    userData,
+    chatData,
+    messagesId,
+    setMessagesId,
+    chatUser,
+    setChatUser,
+  } = useContext(AppContext); // Extracting user data from AppContext using React's useContext hook.
+  const [user, setUser] = useState(null); // State to manage the user object found through search.
   const [showSearch, setShowSearch] = useState(false); // State to manage visibility of the search results or suggestions.
 
   const inputField = async (e) => {
