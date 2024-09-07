@@ -2,7 +2,7 @@
   min-height: 100vh;
   /* position: relative; */
   /* From https://css.glass */
-  background: url(./chat-bg.png);
+  background: url(../../images/chat-bg.png);
   /* background-size: contain; */
   display: flex;
   align-items: center;
