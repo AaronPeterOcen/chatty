@@ -31,7 +31,7 @@
 
 .rs-profile h3 {
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,9 +40,9 @@
 }
 
 .rs-profile p {
-  font-size: 10px;
+  font-size: 10.4px;
   opacity: 80%;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .rs hr {
@@ -66,6 +66,7 @@
 
 .rs-media img {
   width: 60px;
+  aspect-ratio: 1/1;
   border-radius: 4px;
   cursor: pointer;
 }
