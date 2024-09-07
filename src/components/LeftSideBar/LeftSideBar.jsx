@@ -9,6 +9,7 @@ import {
   arrayUnion,
   collection,
   doc,
+  getDoc,
   getDocs,
   query,
   serverTimestamp,
@@ -104,6 +105,9 @@ const LeftSideBar = () => {
           msgSeen: true, // Indicates if the message has been seen
         }),
       });
+
+      setUser(null);
+      setShowSearch(false);
     } catch (error) {
       // Display an error message using toast and log the error to the console
       toast.error(error.message);
@@ -112,8 +116,35 @@ const LeftSideBar = () => {
   };
 
   const setChat = async (item) => {
-    setMessagesId(item.messageId);
-    setChatUser(item);
+    // hope this does not mess it up again
+    try {
+      setMessagesId(item.messageId);
+      setChatUser(item);
+
+      // message seen func am trying
+      // Reference to the current user's chat document
+      const userChatsRef = doc(db, "chats", userData.id);
+
+      // Get the chat document snapshot
+      const userChatsSnapShot = await getDoc(userChatsRef);
+
+      // Extract chat data
+      const userChatsData = userChatsSnapShot.data();
+
+      // Find the chat index by messageId
+      const chatIndex = userChatsData.chatsData.findIndex(
+        (c) => c.messageId === item.messageId
+      );
+
+      // Mark the message as seen
+      userChatsData.chatsData[chatIndex].msgSeen = true;
+
+      // Update the chat document in Firestore
+      await updateDoc(userChatsRef, {
+        chatsData: userChatsData.chatsData,
+      });
+      console.log(chatIndex);
+    } catch (error) {}
   };
 
   return (
@@ -154,7 +185,7 @@ const LeftSideBar = () => {
               onClick={() => setChat(item)}
               key={index}
               className={`friends ${
-                item.messageSeen || item.messageId === messagesId
+                item.messageSeen || item.messageId !== messagesId
                   ? ""
                   : "border"
               }`}
