@@ -86,3 +86,42 @@
   border-radius: 10px;
   cursor: pointer;
 }
+
+.rs-empty {
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  align-items: center; /* Vertical centering */
+  height: 100vh; /* Make sure it takes up full height of the screen */
+  background-color: #003e29;
+  backdrop-filter: blur(5px);
+  background-image: radial-gradient(
+    farthest-corner at 50% 50%,
+    rgba(rgba(127, 182, 133, 1) 0.5),
+    rgba(0, 0, 0, 0)
+  );
+  border-top-right-radius: 15px; /* Top-left corner */
+  border-bottom-right-radius: 15px; /* Bottom-left corner */
+  border-top-left-radius: 0; /* Ensure right corners have no radius */
+  border-bottom-left-radius: 0;
+  color: white;
+  height: 75vh;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.rs-empty button {
+  /* position: absolute; */
+  /* bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%); */
+  /* background: greenyellow; */
+  background-color: rgba(111, 195, 111, 0.692);
+
+  color: wheat;
+  border: none;
+  font-size: 12px;
+  font-weight: 300;
+  padding: 10px 40px;
+  border-radius: 10px;
+  cursor: pointer;
+}
