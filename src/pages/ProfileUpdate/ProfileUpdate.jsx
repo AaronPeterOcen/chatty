@@ -115,13 +115,12 @@ const ProfileUpdate = () => {
             placeholder="User name"
             required
           />
-          <textarea
-            onChange={(e) => setBio(e.target.bio)}
-            value={bio}
-            placeholder="Bio"
-            id="bio"
-            required
-          ></textarea>
+          <input
+            type="text"
+            placeholder="Enter your bio"
+            value={bio} // Controlled component, where bio is the state holding the bio value
+            onChange={(e) => setBio(e.target.value)} // Update state on change
+          />
           <button type="submit">Save</button>
         </form>
         <img

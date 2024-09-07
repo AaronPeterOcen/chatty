@@ -38,7 +38,7 @@ const signup = async (username, email, password) => {
       email,
       name: "", // Placeholder for user's real name
       avatar: "", // Placeholder for user's avatar
-      bio: "Available", // Default bio
+      bio: "", // Default bio
       lastSeen: Date.now(), // Timestamp of the user's last activity
     });
 
