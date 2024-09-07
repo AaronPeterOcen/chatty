@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./RightSideBar.css";
 import userImage from "../../images/bird.jpg";
 
@@ -15,26 +15,48 @@ import { AppContext } from "../../AppContext";
 
 const RightSideBar = () => {
   const { chatUser, messages } = useContext(AppContext);
+  const [msgImg, setMsgImg] = useState([]);
+
+  useEffect(() => {
+    let tempVar = [];
+    messages.map((msg) => {
+      if (msg.image) {
+        tempVar.push(msg.image);
+      }
+    });
+    // console.log(tempVar);
+    setMsgImg(tempVar);
+  }, [messages]);
 
   return chatUser ? (
     <div className="rs">
       <div className="rs-profile">
-        <img src={userImage} alt="" />
+        <img src={chatUser.userData.avatar} alt="" />
         <h3>
-          Username <img className="dot" src={activeIcon} alt="" />
+          {chatUser.userData.name}{" "}
+          <img className="dot" src={activeIcon} alt="" />
         </h3>
-        <p>Available</p>
+        <p>{chatUser.userData.bio}</p>
       </div>
       <hr />
       <div className="rs-media">
         <p>Media</p>
         <div>
-          <img src={pic1} alt="" />
+          {msgImg.map((url, index) => (
+            <img
+              key={index}
+              src={url}
+              alt=""
+              onClick={() => window.open(url, "_blank")} // Open image in a new window
+              style={{ cursor: "pointer" }} // Add a pointer cursor to indicate it's clickable
+            />
+          ))}
+          {/* <img src={pic1} alt="" />
           <img src={pic2} alt="" />
           <img src={pic3} alt="" />
           <img src={pic4} alt="" />
           <img src={pic2} alt="" />
-          <img src={pic1} alt="" />
+          <img src={pic1} alt="" /> */}
         </div>
       </div>
       <button

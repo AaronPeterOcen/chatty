@@ -14,6 +14,41 @@
   height: 75vh;
 }
 
+/* For mobile devices or smaller screens */
+@media (max-width: 768px) {
+  .ls {
+    height: auto; /* Adjust height for smaller screens */
+    width: 100%; /* Full width for small screens */
+    border-radius: 0; /* Remove border-radius for full-screen look */
+  }
+
+  .ls-list {
+    height: auto; /* Allow the list to expand naturally */
+  }
+
+  .friends {
+    font-size: 11px; /* Adjust text size */
+    padding: 5px 10px; /* Reduce padding */
+  }
+
+  .friends img {
+    width: 30px; /* Reduce size for smaller screens */
+  }
+
+  .ls-nav img {
+    max-width: 40px; /* Adjust icons' max-width */
+  }
+
+  .ls-search {
+    padding: 5px; /* Reduce padding */
+    margin: 5px;
+  }
+
+  .ls-search input {
+    font-size: 10px; /* Smaller input font size */
+  }
+}
+
 .ls-top {
   padding: 20px;
 }
