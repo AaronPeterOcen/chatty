@@ -115,7 +115,7 @@ const ProfileUpdate = () => {
             placeholder="User name"
             required
           />
-          <input
+          <textarea
             type="text"
             placeholder="Enter your bio"
             value={bio} // Controlled component, where bio is the state holding the bio value
