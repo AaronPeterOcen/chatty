@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./RightSideBar.css";
-import userImage from "../../images/bird.jpg";
+// import userImage from "../../images/bird.jpg";
 
-import activeIcon from "../../images/check-mark.png";
-import pic1 from "../../images/mustang-gt3.jpg";
-import pic2 from "../../images/porsche.jpg";
-import pic3 from "../../images/redbull-racing-1.jpg";
+// import activeIcon from "../../images/check-mark.png";
+// import pic1 from "../../images/mustang-gt3.jpg";
+// import pic2 from "../../images/porsche.jpg";
+// import pic3 from "../../images/redbull-racing-1.jpg";
 
-import pic4 from "../../images/renault-clio.jpg";
+// import pic4 from "../../images/renault-clio.jpg";
 import { signout } from "../../config/firebase";
-import { signOut } from "firebase/auth";
+// import { signOut } from "firebase/auth";
 import { AppContext } from "../../AppContext";
 // import pic5 from "../../images/";
 
@@ -34,7 +34,7 @@ const RightSideBar = () => {
         <img src={chatUser.userData.avatar} alt="" />
         <h3>
           {chatUser.userData.name}{" "}
-          <img className="dot" src={activeIcon} alt="" />
+          {/* <img className="dot" src={activeIcon} alt="" /> */}
         </h3>
         <p>{chatUser.userData.bio}</p>
       </div>
