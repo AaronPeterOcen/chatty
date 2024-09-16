@@ -145,9 +145,9 @@ const ChatBox = () => {
         <img src={chatUser.userData.avatar} alt="" />
         <p>
           {chatUser.userData.name}{" "}
-          <img className="dot" src={activeIcon} alt="" />
+          {/* <img className="dot" src={activeIcon} alt="" /> */}
         </p>
-        <img src={helpIcon} alt="" />
+        {/* <img src={helpIcon} alt="" /> */}
       </div>
 
       <div className="chat-msg">
