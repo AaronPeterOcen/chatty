@@ -159,8 +159,8 @@ const LeftSideBar = () => {
             <img src={menuIcon} alt="menu-icon" />
             <div className="sub-menu">
               <p onClick={() => navigate("/profile")}>Edit Profile</p>
-              <hr />
-              <p>Sign out</p>
+              {/* <hr />
+              <p>Sign out</p> */}
             </div>
           </div>
         </div>
